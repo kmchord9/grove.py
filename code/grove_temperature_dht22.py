@@ -15,13 +15,15 @@ Examples:
 import time
 import board
 import adafruit_dht
+from adafruit_blinka.microcontroller.bcm283x.pin import Pin
 
 def main():
     from grove.helper import SlotHelper
     sh = SlotHelper()
     pin = sh.argv2pin()
+    pin_asn = Pin(pin)
 
-    dhtDevice = adafruit_dht.DHT22(pin)
+    dhtDevice = adafruit_dht.DHT22(pin_asn)
 
     while True:
         try:
