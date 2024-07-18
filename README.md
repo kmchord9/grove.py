@@ -91,7 +91,6 @@ D18に接続した場合には引数に18を入れる
 ### 振動センサ
 接続先 Digital  
 ![image](https://github.com/user-attachments/assets/2e99fead-ef3a-4805-9944-fdca92dd61f0)  
-
 [GROVE - 振動センサ（SW-420） — スイッチサイエンス](https://www.switch-science.com/products/5347?_pos=3&_sid=2162527a3&_ss=r)
 #### 依存ライブラリのインストール
 ```
@@ -104,6 +103,31 @@ cd grove.py/code
 python grove_vibration_sw420.py 18
 ```
 D18に接続した場合には引数に18を入れる
+
+### 6軸加速度・ジャイロセンサ(BMI088)
+接続先 I2C  
+![image](https://github.com/user-attachments/assets/f073a62f-01bb-4e34-a660-c6605b6345bb)  
+[GROVE - 6軸加速度・ジャイロセンサ（BMI088） — スイッチサイエンス](https://www.switch-science.com/products/5343?_pos=1&_sid=37a2f6032&_ss=r)  
+
+#### 依存ライブラリのインストール
+```
+sudo apt-get install debhelper dh-make debmake devscripts fakeroot
+cd ~
+git clone https://github.com/turmary/bmi088-python.git
+cd bmi088-python
+git submodule init
+git submodule update
+./tools/packaging_deb.sh
+cd ~/bmi088-python/deobj
+sudo dpkg -i libbmi088_0.0.2-1_arm64.deb
+```
+[bmi088-python/ at master · turmary/bmi088-python](https://github.com/turmary/bmi088-python/tree/master)
+
+#### 実行方法
+```
+cd grove.py/code
+python grove_6_axis_accel_gyro_bmi088.py
+```
 
 ### 音センサ
 接続先 Analog  
