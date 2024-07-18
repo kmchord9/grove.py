@@ -88,6 +88,39 @@ python grove_ultrasonic_ranger.py 18
 ```
 D18に接続した場合には引数に18を入れる
 
+### 振動センサ
+接続先 Digital  
+![image](https://github.com/user-attachments/assets/2e99fead-ef3a-4805-9944-fdca92dd61f0)  
+
+[GROVE - 振動センサ（SW-420） — スイッチサイエンス](https://www.switch-science.com/products/5347?_pos=3&_sid=2162527a3&_ss=r)
+#### 依存ライブラリのインストール
+```
+pip install pigpio
+pip install gpiozero
+```
+#### 実行方法
+```
+cd grove.py/code
+python grove_vibration_sw420.py 18
+```
+D18に接続した場合には引数に18を入れる
+
+### 音センサ
+接続先 Analog  
+![image](https://github.com/user-attachments/assets/b950d463-7a64-4cd6-ac19-c46cf5578281)  
+
+[Gravity- DHT22 温湿度センサ — スイッチサイエンス](https://www.switch-science.com/products/5020?_pos=1&_sid=c8d6ee23d&_ss=r)
+#### 依存ライブラリのインストール
+```
+
+```
+#### 実行方法
+```
+cd grove.py/code
+python grove_sound_sensor.py 0
+```
+A0に接続した場合には引数に0を入れる
+
 
 <br><br>
 ## API Documentation
