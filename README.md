@@ -39,46 +39,55 @@ Here is the compatibility of [grove.py](https://github.com/Seeed-Studio/grove.py
 
 **Because Python2 is obsolete and APT repository does not provide `python-pip`, so the Raspberry Pi OS releases which after `10 (Buster) 2020-08-20` cannot use `Online install` command. We also recommend using Python3 to all the users and developers.**
 
-### Online install
-install/update all dependencies and latest grove.py
-```shell
-curl -sL https://github.com/Seeed-Studio/grove.py/raw/master/install.sh | sudo bash -s -
-```
-
 ### Install grove.py
-From source code
-```shell
-git clone https://github.com/Seeed-Studio/grove.py
+
+```
+git clone https://github.com/kmchord9/grove.py.git
 cd grove.py
-# Python2 (This command line does not provide for Raspberrypi OS 10 (Buster) >= 2020-12-02)
-sudo pip install .
-# Python3 
-sudo pip3 install .
-# virutalenv for Python3 (If the installation fails when using pip3)
-sudo apt install python3-virtualenv
-virtualenv -p python3 env
-source env/bin/activate
-pip3 install .
+python -m venv vgrove
+source vgrove/bin/activate
+pip install .
 ```
 
 <br><br>
 ## Usage
-Basic GPIO Input & Output demo
-```python
-import time
-from grove.gpio import GPIO
 
-led = GPIO(12, GPIO.OUT)
-button = GPIO(22, GPIO.IN)
+![](https://files.seeedstudio.com/wiki/Grove_Base_Hat_for_Raspberry_Pi/img/pin-out/overview.jpg)
+Grove Base Hat for Raspberry Piのピン配置は上記の画像のようになっており、  
+センサーの仕様によってDigital,Analog,I2C,PWM,UARTの接続先が異なるので注意する。
 
-while True:
-    if button.read():
-        led.write(1)
-    else:
-        led.write(0)
-    time.sleep(0.1)
+### 温度センサー（DHT22）
+接続先 Digital  
+![image](https://github.com/user-attachments/assets/81509f75-8e44-4bc4-96da-1846fb79e203)  
+[Gravity- DHT22 温湿度センサ — スイッチサイエンス](https://www.switch-science.com/products/5020?_pos=1&_sid=c8d6ee23d&_ss=r)
+
+#### 依存ライブラリのインストール
 ```
-See more [demos and how to run](doc/README.md)
+sudo apt-get install libgpiod2
+pip install adafruit-circuitpython-dht
+```
+#### 実行方法
+```
+cd grove.py/code
+python grove_temperature_dht22.py 18
+```
+D18に接続した場合には引数に18を入れる
+
+### 距離センサ
+接続先 Digital  
+![image](https://github.com/user-attachments/assets/e355019d-ae1a-4199-a8ee-72b17543889a)  
+[GROVE - 超音波距離センサモジュール — スイッチサイエンス](https://www.switch-science.com/products/1383)
+#### 依存ライブラリのインストール
+```
+
+```
+#### 実行方法
+```
+cd grove.py/code
+python grove_ultrasonic_ranger.py 18
+```
+D18に接続した場合には引数に18を入れる
+
 
 <br><br>
 ## API Documentation
